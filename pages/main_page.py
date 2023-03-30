@@ -1,9 +1,10 @@
+import allure
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
-
+from utilities.logger import Logger
 
 
 class Main_page(Base):
@@ -16,7 +17,7 @@ class Main_page(Base):
 
 
     #Locators
-    """First product"""
+    """First product - mascara"""
     all_categories = "//button[@class='styles_catalogButton__1K6kI']"
     beauty_category = "//a[@href='/beauty/']"
     make_up_type_category = "//*[@id='content']/div[1]/div[6]/h2/a"
@@ -30,7 +31,7 @@ class Main_page(Base):
     add_product_1 = "//*[@id='j-result-page-1']/li[3]/dl/div[2]/form/button"
     account_shopping_cart = "//*[@id='header']/div/div[3]/div/div[4]/a"
 
-    """Second product"""
+    """Second product - headlamp"""
     search_2 = "//input[@id='catalogSearch']"
     mode = "//*[@id='j-filter__form']/div[3]/dl[3]/dt/span"
     button_4 = "//label[@title='4']"
@@ -43,7 +44,7 @@ class Main_page(Base):
     button_show_product_2 = "//*[@id='j-filter__btn']"
     add_product_2 = "//*[@id='j-result-page-1']/div/div/ul/li[1]/dl/dd/div/form/button"
 
-    """Third product"""
+    """Third product - filter for robot cleaner"""
     search_3 = "//input[@id='catalogSearch']"
     price_filter_start = "//input[@name='filter[price][from]']"
     price_filter_finish = "//input[@name='filter[price][to]']"
@@ -54,7 +55,7 @@ class Main_page(Base):
     add_product_3 = "//*[@id='j-result-page-1']/div/div/ul/li[1]/dl/dd/div/form/button"
 
 
-    """For second test"""
+    """For second test - information about delivery from this internet shop"""
     button_services_yet = "//*[@id='header']/div/div[1]/div/div/ul[1]/li[3]/div/div/button"
     button_delivery = "//*[@id='navMenu']/ul/li[2]/a"
 
@@ -182,11 +183,11 @@ class Main_page(Base):
 
     def input_price_start_1(self, price_start_1):
         self.get_price_start_1().send_keys(price_start_1)
-        print("Input text 39")
+        print("Input text 39 - it is will be minimum price")
 
     def input_price_finish_1(self, price_finish_1):
         self.get_price_finish_1().send_keys(price_finish_1)
-        print("Input text 40")
+        print("Input text 40 - it is will be maximum price")
 
     def click_filter_show_all(self):
         self.get_filter_show_all().click()
@@ -222,7 +223,7 @@ class Main_page(Base):
 
     def click_button_4(self):
         self.get_button_4().click()
-        print("Click on button 4")
+        print("Click on button 4 mode")
 
     def click_range(self):
         self.get_range().click()
@@ -234,7 +235,7 @@ class Main_page(Base):
 
     def click_button_50(self):
         self.get_button_50().click()
-        print("Click on button 50")
+        print("Click on button 50 meters range")
 
     def click_leds(self):
         self.get_leds().click()
@@ -246,7 +247,7 @@ class Main_page(Base):
 
     def click_button_25(self):
         self.get_button_25().click()
-        print("Click on button 25")
+        print("Click on button 25 leds")
 
     def click_button_show_product_2(self):
         self.get_button_show_product_2().click()
@@ -279,7 +280,7 @@ class Main_page(Base):
 
     def click_button_2(self):
         self.get_button_2().click()
-        print("Click on button 2")
+        print("Click on button 2 products")
 
     def click_button_show_product_3(self):
         self.get_button_show_product_3().click()
@@ -304,94 +305,106 @@ class Main_page(Base):
     #Methods
     """First product"""
     def select_product_1(self):
-        self.get_current_url()
-        self.click_all_categories()
-        self.click_beauty_category()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_make_up_type_category())
-        self.click_make_up_type_category()
-        self.click_mascara()
-        self.input_price_start_1('39')
-        self.input_price_finish_1('40')
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_filter_show_all())
-        self.click_filter_show_all()
-        self.driver.execute_script("arguments[0].click()", self.get_filter_choose_brand())
-        self.click_filter_choose_brand()
-        self.click_filter_choose_brand()
-        self.click_button_show_products()
-        self.get_current_url()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_add_product_1())
-        self.click_add_product_1()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
-        self.click_account_shopping_cart()
-        self.get_screenshot()
+        with allure.step("Select_product_1"):
+            Logger.add_start_step(method="select_product_1")
+            self.get_current_url()
+            self.click_all_categories()
+            self.click_beauty_category()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_make_up_type_category())
+            self.click_make_up_type_category()
+            self.click_mascara()
+            self.input_price_start_1('39')
+            self.input_price_finish_1('40')
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_filter_show_all())
+            self.click_filter_show_all()
+            self.driver.execute_script("arguments[0].click()", self.get_filter_choose_brand())
+            self.click_filter_choose_brand()
+            self.click_filter_choose_brand()
+            self.click_button_show_products()
+            self.get_current_url()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_add_product_1())
+            self.click_add_product_1()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
+            self.click_account_shopping_cart()
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="select_product_1")
 
     """Second product"""
     def select_product_2(self):
-        self.get_current_url()
-        self.input_search_2('лобный фонарик Navigator')
-        self.get_search_2().send_keys(Keys.ENTER)
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_mode())
-        self.driver.execute_script("arguments[0].click()", self.get_mode())
-        self.click_mode()
-        self.click_mode()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_4())
-        self.driver.execute_script("arguments[0].click()", self.get_button_4())
-        self.click_button_4()
-        self.click_button_4()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_range())
-        self.driver.execute_script("arguments[0].click()", self.get_range())
-        self.click_range()
-        self.click_range()
-        self.click_show_filter_range()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_50())
-        self.driver.execute_script("arguments[0].click()", self.get_button_50())
-        self.click_button_50()
-        self.click_button_50()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_leds())
-        self.driver.execute_script("arguments[0].click()", self.get_leds())
-        self.click_leds()
-        self.click_leds()
-        self.click_show_filter_leds()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_25())
-        self.driver.execute_script("arguments[0].click()", self.get_button_25())
-        self.click_button_25()
-        self.click_button_25()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_show_product_2())
-        self.click_button_show_product_2()
-        self.click_add_product_2()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
-        self.click_account_shopping_cart()
-        self.get_screenshot()
+        with allure.step("Select_product_2"):
+            Logger.add_start_step(method="select_product_2")
+            self.get_current_url()
+            self.input_search_2('лобный фонарик Navigator')
+            self.get_search_2().send_keys(Keys.ENTER)
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_mode())
+            self.driver.execute_script("arguments[0].click()", self.get_mode())
+            self.click_mode()
+            self.click_mode()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_4())
+            self.driver.execute_script("arguments[0].click()", self.get_button_4())
+            self.click_button_4()
+            self.click_button_4()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_range())
+            self.driver.execute_script("arguments[0].click()", self.get_range())
+            self.click_range()
+            self.click_range()
+            self.click_show_filter_range()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_50())
+            self.driver.execute_script("arguments[0].click()", self.get_button_50())
+            self.click_button_50()
+            self.click_button_50()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_leds())
+            self.driver.execute_script("arguments[0].click()", self.get_leds())
+            self.click_leds()
+            self.click_leds()
+            self.click_show_filter_leds()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_25())
+            self.driver.execute_script("arguments[0].click()", self.get_button_25())
+            self.click_button_25()
+            self.click_button_25()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_show_product_2())
+            self.click_button_show_product_2()
+            self.click_add_product_2()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
+            self.click_account_shopping_cart()
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="select_product_2")
 
     """Third product"""
     def select_product_3(self):
-        self.get_current_url()
-        self.input_search_3('фильтер для роботов-пылесосов')
-        self.get_search_2().send_keys(Keys.ENTER)
-        self.input_price_filter_start('30')
-        self.input_price_filter_finish('40')
-        self.click_model()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_amount_product())
-        self.click_amount_product()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_2())
-        self.driver.execute_script("arguments[0].click()", self.get_button_2())
-        self.click_button_2()
-        self.click_button_2()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_show_product_3())
-        self.click_button_show_product_3()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_add_product_3())
-        self.click_add_product_3()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
-        self.click_account_shopping_cart()
-        self.get_screenshot()
+        with allure.step("Select_product_3"):
+            Logger.add_start_step(method="select_product_3")
+            self.get_current_url()
+            self.input_search_3('фильтер для роботов-пылесосов')
+            self.get_search_2().send_keys(Keys.ENTER)
+            self.input_price_filter_start('30')
+            self.input_price_filter_finish('40')
+            self.click_model()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_amount_product())
+            self.click_amount_product()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_2())
+            self.driver.execute_script("arguments[0].click()", self.get_button_2())
+            self.click_button_2()
+            self.click_button_2()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_button_show_product_3())
+            self.click_button_show_product_3()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_add_product_3())
+            self.click_add_product_3()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_account_shopping_cart())
+            self.click_account_shopping_cart()
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="select_product_3")
 
     """For second test"""
     def select_menu_services(self):
-        self.get_current_url()
-        self.click_button_services_yet()
-        self.click_button_delivery()
-        self.assert_url('https://www.21vek.by/services/delivery.html')
-        self.get_screenshot()
+        with allure.step("Select_menu_services"):
+            Logger.add_start_step(method="select_menu_services")
+            self.get_current_url()
+            self.click_button_services_yet()
+            self.click_button_delivery()
+            self.assert_url('https://www.21vek.by/services/delivery.html')
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="select_menu_services")
 
 
 

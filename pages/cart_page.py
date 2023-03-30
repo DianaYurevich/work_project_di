@@ -1,7 +1,10 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
+
 
 class Cart_page(Base):
     url = 'https://www.21vek.by/'
@@ -24,9 +27,12 @@ class Cart_page(Base):
 
     #Methods
     def product_confirmation_1(self):
-        self.get_current_url()
-        self.get_screenshot()
-        self.click_checkout_product()
+        with allure.step("Product_confirmation_1"):
+            Logger.add_start_step(method="product_confirmation_1")
+            self.get_current_url()
+            self.get_screenshot()
+            self.click_checkout_product()
+            Logger.add_end_step(url=self.driver.current_url, method="product_confirmation_1")
 
 
 

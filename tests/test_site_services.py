@@ -1,4 +1,6 @@
 import time
+
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -9,7 +11,7 @@ from selenium.webdriver.chrome.options import Options
 from pages.login_page import Login_page
 from pages.main_page import Main_page
 
-
+@allure.description("Test site services")
 def test_site_services():
     options = Options()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])

@@ -1,6 +1,6 @@
 import time
 
-
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver import ActionChains
@@ -18,6 +18,7 @@ from pages.finish_page import Finish_page
 # from selenium.webdriver import Keys
 
 @pytest.mark.run(order=1)
+@allure.description("Test buy product 1")
 def test_buy_product_1(set_up, set_group):
     options = Options()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -50,6 +51,7 @@ def test_buy_product_1(set_up, set_group):
     print("Finish shopping product 1")
 
 @pytest.mark.run(order=2)
+@allure.description("Test buy product 2")
 def test_buy_product_2(set_up, set_group):
     options = Options()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -81,6 +83,7 @@ def test_buy_product_2(set_up, set_group):
     print("Finish shopping product 2")
 
 @pytest.mark.run(order=3)
+@allure.description("Test buy product 3")
 def test_buy_product_3(set_up, set_group):
     options = Options()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])

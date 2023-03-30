@@ -1,7 +1,9 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from base.base_class import Base
+from utilities.logger import Logger
 
 
 class Client_information_page(Base):
@@ -68,16 +70,20 @@ class Client_information_page(Base):
 
     #Methods
     def input_information(self):
-        self.get_current_url()
-        self.get_client_city().clear()
-        self.input_client_city("г.Витебск")
-        self.click_choose_city()
-        self.click_type_deliver()
-        self.driver.execute_script("arguments[0].scrollIntoView();", self.get_client_number_phone())
-        self.get_client_number_phone().clear()
-        self.input_client_number_phone("+375291111111")
-        self.input_comment("Will call when the goods arrived")
-        self.get_screenshot()
+        with allure.step("Client information"):
+            Logger.add_start_step(method="input_information")
+            self.get_current_url()
+            self.get_client_city().clear()
+            self.input_client_city("г.Витебск")
+            self.click_choose_city()
+            self.click_type_deliver()
+            self.driver.execute_script("arguments[0].scrollIntoView();", self.get_client_number_phone())
+            self.get_client_number_phone().clear()
+            self.input_client_number_phone("+375291111111")
+            self.input_comment("Will call when the goods arrived")
+            self.get_screenshot()
+            Logger.add_end_step(url=self.driver.current_url, method="input_information")
+
 
 
 
